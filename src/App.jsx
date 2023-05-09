@@ -10,18 +10,13 @@ import Navbar from "./components/reusable/Navbar";
 import "./App.css";
 
 function App() {
-  const [token, setToken] = useState("");
-
   return (
     <div className="app">
       <Router>
         <>
           <Navbar />
           <Routes>
-            {/* <Route exact path="/user" element={<CheckAuthPage />}>
-              <Route exact path="/user" element={<HomePage />} />
-            </Route> */}
-            <Route path="/user" element={<CheckAuthPage Component={HomePage} />} />
+            <Route path="/protected" element={<CheckAuthPage Component={HomePage} />} />
             <Route exact path="/login" element={<LoginPage />} />
             <Route exact path="/" element={<WelcomePage />} />
           </Routes>
