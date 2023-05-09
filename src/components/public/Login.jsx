@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MDBInput, MDBBtn } from "mdb-react-ui-kit";
 import { MDBIcon } from "mdb-react-ui-kit";
 
@@ -13,18 +13,30 @@ export default function Login() {
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  useEffect(() => {
+    const authenticatedUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (authenticatedUser) {
+      window.location.href="/protected";
+    }
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      setIsLoading(true);
-      await authServices.login(username, password);
-      //use full refresh to toggle user in local storage
-      window.location.href = "/protected";
-    } catch (error) {
-      setIsLoading(false);
+    if (!username || !password) {
       setHasError(true);
-      setErrorMessage(error.response.data.message);
+      setErrorMessage("please fill all fields");
+    } else {
+      try {
+        setIsLoading(true);
+        await authServices.login(username, password);
+        //use full refresh to toggle user in local storage
+        window.location.href = "/protected";
+      } catch (error) {
+        setIsLoading(false);
+        setHasError(true);
+        setErrorMessage(error.response.data.message);
+      }
     }
   };
 
