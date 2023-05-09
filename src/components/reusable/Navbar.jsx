@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   MDBContainer,
   MDBIcon,
@@ -30,12 +31,12 @@ export default function Navbar() {
           <MDBNavbarNav>
             <MDBNavbarItem>
               <MDBNavbarLink active aria-current="page" href="#">
-                Home
+                <Link to="/"> Home </Link>
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink active aria-current="page" href="#">
-                Login
+              <Link to="/login">Login</Link>
               </MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
