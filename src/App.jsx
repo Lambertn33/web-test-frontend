@@ -6,7 +6,6 @@ import LoginPage from "./components/public/Login";
 import WelcomePage from "./components/public/Welcome";
 
 import Navbar from "./components/reusable/Navbar";
-import "./App.css";
 import { CheckAuth } from "./components/public/CheckAuth";
 
 function App() {
