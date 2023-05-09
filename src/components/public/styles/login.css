@@ -1,0 +1,9 @@
+.login-form {
+    border: 0.03125rem solid #ccc;
+    padding: 2.5rem;
+    border-radius: 0.5rem;
+}
+
+h5 {
+    text-align: center;
+}
