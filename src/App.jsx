@@ -1,10 +1,10 @@
 import "./App.css";
-import { MDBBtn } from "mdb-react-ui-kit";
+import Navbar from "./components/reusable/Navbar";
 
 function App() {
   return (
     <div className="app">
-      <MDBBtn>Button</MDBBtn>
+      <Navbar />
     </div>
   );
 }
