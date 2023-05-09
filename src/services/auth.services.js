@@ -1,13 +1,14 @@
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
 
+// change url in large project
 const authUrl = 'http://localhost:5000/api/login';
 
 export async function login(email, password) {
     let response = await axios.post(authUrl, { email, password });
     let { token } = response.data;
-    let currentUser = jwt_decode(token);
-    localStorage.setItem('currentUser', currentUser);
+    let { authenticatedUser: currentUser }= jwt_decode(token);
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
 }
 
 export function getCurrentUser() {

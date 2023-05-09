@@ -1,11 +1,10 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-function CheckAuth(Component) {
-  const auth = false; 
-  // logic
-
-    return auth ? <Component /> : <Navigate to="/login" />
+export function CheckAuth({ children }) {
+  const user = localStorage.getItem("currentUser"); 
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+  return children;
 }
-
-export default CheckAuth;
