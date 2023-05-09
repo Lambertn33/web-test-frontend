@@ -40,7 +40,7 @@ export default function Navbar() {
           {!authenticatedUser ? (
             <Link to="/login" className="link">Login</Link>
           ) : (
-            <Link to="#" onClick={logout}>
+            <Link to="#" className="link" onClick={logout}>
               {" "}
               Logout{" "}
             </Link>

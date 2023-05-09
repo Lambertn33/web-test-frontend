@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { MDBInput, MDBBtn } from "mdb-react-ui-kit";
-import { useNavigate } from "react-router-dom";
 import { MDBIcon } from "mdb-react-ui-kit";
 
 import authServices from "../../services/auth.services";
@@ -13,7 +12,6 @@ export default function Login() {
   const [loading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,7 +19,8 @@ export default function Login() {
     try {
       setIsLoading(true);
       await authServices.login(username, password);
-      navigate("/protected");
+      //use full refresh to toggle user in local storage
+      window.location.href = "/protected";
     } catch (error) {
       setIsLoading(false);
       setHasError(true);
@@ -31,19 +30,19 @@ export default function Login() {
 
   function hideError() {
     setHasError(false);
-    setErrorMessage('');
+    setErrorMessage("");
   }
 
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-6 login">
+        <div className="col-md-4 login">
           <h5>Welcome.. Please input your credentials</h5>
           <form className="login-form" onSubmit={handleSubmit}>
             {hasError ? (
               <div className="error-message">
                 <span className="text-danger">{errorMessage}</span>
-                <MDBIcon icon="trash" fas  onClick={hideError}/>
+                <MDBIcon icon="trash" fas onClick={hideError} />
               </div>
             ) : null}
             <MDBInput
