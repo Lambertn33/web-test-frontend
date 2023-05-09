@@ -34,11 +34,11 @@ export default function Navbar() {
         <MDBCollapse navbar show={showNav}>
           <MDBNavbarNav>
             <MDBNavbarItem>
-              <Link to="/"> Home </Link>
+              <Link to="/" className="link"> Home </Link>
             </MDBNavbarItem>
           </MDBNavbarNav>
           {!authenticatedUser ? (
-            <Link to="/login">Login</Link>
+            <Link to="/login" className="link">Login</Link>
           ) : (
             <Link to="#" onClick={logout}>
               {" "}

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import authServices from "../../services/auth.services";
 
-import "./styles/login.css";
+import "../../App.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -27,7 +27,7 @@ export default function Login() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-6 offset-md-3">
+        <div className="col-md-6 login">
           <h5>Welcome.. Please input your credentials</h5>
           <form className="login-form" onSubmit={handleSubmit}>
             <MDBInput
