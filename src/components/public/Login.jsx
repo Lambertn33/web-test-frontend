@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MDBInput, MDBBtn } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
+import { MDBIcon } from "mdb-react-ui-kit";
 
 import authServices from "../../services/auth.services";
 
@@ -10,6 +11,8 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -20,9 +23,16 @@ export default function Login() {
       await authServices.login(username, password);
       navigate("/protected");
     } catch (error) {
-      console.error(error);
+      setIsLoading(false);
+      setHasError(true);
+      setErrorMessage(error.response.data.message);
     }
   };
+
+  function hideError() {
+    setHasError(false);
+    setErrorMessage('');
+  }
 
   return (
     <div className="container">
@@ -30,6 +40,12 @@ export default function Login() {
         <div className="col-md-6 login">
           <h5>Welcome.. Please input your credentials</h5>
           <form className="login-form" onSubmit={handleSubmit}>
+            {hasError ? (
+              <div className="error-message">
+                <span className="text-danger">{errorMessage}</span>
+                <MDBIcon icon="trash" fas  onClick={hideError}/>
+              </div>
+            ) : null}
             <MDBInput
               className="mb-4"
               type="email"
@@ -43,8 +59,12 @@ export default function Login() {
               onChange={(event) => setPassword(event.target.value)}
             />
 
-            <MDBBtn type="submit" block>
-              Submit
+            <MDBBtn
+              type="submit"
+              block
+              color={loading ? "secondary" : "primary"}
+            >
+              {loading ? "Please wait..." : "Submit"}
             </MDBBtn>
           </form>
         </div>

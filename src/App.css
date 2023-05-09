@@ -19,6 +19,19 @@
   color: #000;
 }
 /* Login Page */
+
+.error-message {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.0625rem solid red;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+.error-message i {
+  color: red;
+}
 .login {
   position: fixed;
   top: 50%;
